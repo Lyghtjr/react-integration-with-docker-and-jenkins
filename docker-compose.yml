@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  nginx-react:
+    build: 
+      dockerfile: Dockerfile
+      context: ./client
+    ports:
+      - "80:80"
+  
+  jenkins:
+    build: 
+      dockerfile: Dockerfile
+      context: ./jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
